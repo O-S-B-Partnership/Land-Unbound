@@ -136,10 +136,10 @@ namespace GameWorld.Voxel
 
 		protected virtual MeshData FaceDataWest (Chunk chunk, int x, int y, int z, MeshData meshData)
 		{
-			meshData.vertices.Add(new Vector3(x - scale, y - scale, z + scale));
-			meshData.vertices.Add(new Vector3(x - scale, y + scale, z + scale));
-			meshData.vertices.Add(new Vector3(x - scale, y + scale, z - scale));
-			meshData.vertices.Add(new Vector3(x - scale, y - scale, z - scale));
+			meshData.AddVertex(new Vector3(x - scale, y - scale, z + scale));
+			meshData.AddVertex(new Vector3(x - scale, y + scale, z + scale));
+			meshData.AddVertex(new Vector3(x - scale, y + scale, z - scale));
+			meshData.AddVertex(new Vector3(x - scale, y - scale, z - scale));
 
 			meshData.AddQuadTriangles();
 			meshData.uv.AddRange(FaceUVs(Direction.west));
@@ -148,10 +148,10 @@ namespace GameWorld.Voxel
 
 		protected virtual MeshData FaceDataEast (Chunk chunk, int x, int y, int z, MeshData meshData)
 		{
-			meshData.vertices.Add(new Vector3(x + scale, y - scale, z - scale));
-			meshData.vertices.Add(new Vector3(x + scale, y + scale, z - scale));
-			meshData.vertices.Add(new Vector3(x + scale, y + scale, z + scale));
-			meshData.vertices.Add(new Vector3(x + scale, y - scale, z + scale));
+			meshData.AddVertex(new Vector3(x + scale, y - scale, z - scale));
+			meshData.AddVertex(new Vector3(x + scale, y + scale, z - scale));
+			meshData.AddVertex(new Vector3(x + scale, y + scale, z + scale));
+			meshData.AddVertex(new Vector3(x + scale, y - scale, z + scale));
 
 			meshData.AddQuadTriangles();
 			meshData.uv.AddRange(FaceUVs(Direction.east));

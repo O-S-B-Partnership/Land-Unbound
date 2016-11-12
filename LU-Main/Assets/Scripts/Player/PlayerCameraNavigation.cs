@@ -8,6 +8,8 @@ namespace Player
 
 		[SerializeField]
 		private float _LandSpeed;
+		[SerializeField]
+		private PlayerPhysicsHandler _physics;
 
 		private Camera _FocalPoint;
 		public Camera FocalPoint
@@ -61,6 +63,24 @@ namespace Player
 			Vector3 controlDirection = HandleInput();
 
 			HandleFacing(controlDirection);
+
+			transform.position += _physics.ApplyGravity(transform.position, Vector3.zero);
+
+			if (!_physics.CanTravel(transform.position, controlDirection))
+			{
+				Vector3 finalDirection = controlDirection;
+				if (!_physics.CanTravel(transform.position, new Vector3(0, 0, controlDirection.z)))
+				{
+					finalDirection.z = 0;
+				}
+
+				if (!_physics.CanTravel(transform.position, new Vector3(controlDirection.x, 0, 0)))
+				{
+					finalDirection.x = 0;
+				}
+
+				controlDirection = Vector3.ClampMagnitude(finalDirection, controlDirection.magnitude);
+			}
 
 			transform.position += controlDirection;
 		}
