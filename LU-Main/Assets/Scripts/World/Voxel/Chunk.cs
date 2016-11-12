@@ -50,9 +50,43 @@ namespace GameWorld.Voxel
 			}
 		}
 
+		public static bool InRange(int index)
+		{
+			if (index < 0 || index >= ChunkSize)
+			{
+				return false;
+			}
+			return true;
+		}
+
+		void Update()
+		{
+			if (update)
+			{
+				update = false;
+				UpdateChunk();
+			}
+		}
+
 		public Block GetBlock(int x, int y, int z)
 		{
-			return _Blocks[x, y, z];
+			if (InRange(x) && InRange(y) && InRange(z))
+			{
+				return _Blocks[x, y, z];
+			}
+			return world.GetBlock(pos.X + x, pos.Y + y, pos.Z + z);
+		}
+
+		public void SetBlock(int x, int y, int z, Block block)
+		{
+			if (InRange(x) && InRange(y) && InRange(z))
+			{
+				_Blocks[x, y, z] = block;
+			}
+			else
+			{
+				world.SetBlock(pos.X + x, pos.Y + y, pos.Z + z, block);
+			}
 		}
 
 		// Updates the chunk based on its contents

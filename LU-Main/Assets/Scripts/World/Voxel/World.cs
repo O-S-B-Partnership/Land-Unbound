@@ -41,6 +41,24 @@ namespace GameWorld.Voxel
 			newChunk.world = this;
 
 			chunks.Add(worldPos, newChunk);
+
+			for (int xi = 0; xi < 16; xi++)
+			{
+				for (int yi = 0; yi < 16; yi++)
+				{
+					for (int zi = 0; zi < 16; zi++)
+					{
+						if (yi <= 7)
+						{
+							SetBlock(x + xi, y + yi, z + zi, new GrassBlock());
+						}
+						else
+						{
+							SetBlock(x + xi, y + yi, z + zi, new AirBlock());
+						}
+					}
+				}
+			}
 		}
 
 		/// <summary>
@@ -63,7 +81,6 @@ namespace GameWorld.Voxel
 			return containerChunk;
 		}
 
-		// TODO: Completed up to creating GET BLOCK from the tutorial part 3
 		/// <summary>
 		/// Get a block given it's overall world coordinates (x, y, z)
 		/// </summary>
@@ -86,6 +103,34 @@ namespace GameWorld.Voxel
 			else
 			{
 				return new AirBlock();
+			}
+		}
+
+		/// <summary>
+		/// Set a block with a new block.
+		/// </summary>
+		/// <param name="x">The world x position of the old block.</param>
+		/// <param name="y">The world y position of the old block.</param>
+		/// <param name="z">The world z position of the old block.</param>
+		/// <param name="block">The new block data.</param>
+		public void SetBlock(int x, int y, int z, Block block)
+		{
+			Chunk chunk = GetChunk(x, y, z);
+
+			if (chunk != null)
+			{
+				chunk.SetBlock(x - chunk.pos.X, y - chunk.pos.Y, z - chunk.pos.Z, block);
+				chunk.update = true;
+			}
+		}
+
+		public void DestroyChunk(int x, int y, int z)
+		{
+			Chunk chunk = null;
+			if (chunks.TryGetValue(new WorldPos(x, y, z), out chunk))
+			{
+				Object.Destroy(chunk.gameObject);
+				chunks.Remove(new WorldPos(x, y, z));
 			}
 		}
 	}

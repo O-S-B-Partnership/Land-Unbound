@@ -161,7 +161,7 @@ namespace GameWorld.Voxel
 
 		protected bool IsNeighborBlockSolid(Chunk chunk, int x, int y, int z, Direction direction)
 		{
-			return chunk.GetBlock(x, y, z) != null && chunk.GetBlock(x, y, z).IsSolid(direction);
+			return chunk.GetBlock(x, y, z).IsSolid(direction);
 		}
 	}
 }
