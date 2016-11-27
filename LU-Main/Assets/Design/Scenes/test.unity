@@ -223,6 +223,7 @@ GameObject:
   - 136: {fileID: 484604976}
   - 23: {fileID: 484604975}
   - 114: {fileID: 484604979}
+  - 114: {fileID: 484604980}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -306,7 +307,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _LandSpeed: 25
   _physics:
-    applyGravity: 1
+    applyGravity: 0
+--- !u!114 &484604980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 484604974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4a17065b3a0daa4da8e3b9bc8c9259c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  world: {fileID: 139456861}
+  genStepsOut: 8
 --- !u!1 &1203186626
 GameObject:
   m_ObjectHideFlags: 0

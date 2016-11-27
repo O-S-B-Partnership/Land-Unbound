@@ -13,9 +13,10 @@ namespace GameWorld.Voxel
 		#endregion Public Static
 
 		#region Public Members
-		public bool update = true;
+		public bool update = false;
 		public World world;
 		public WorldPos pos;
+		public bool rendered;
 		#endregion
 
 		#region Private Members
@@ -92,6 +93,7 @@ namespace GameWorld.Voxel
 		// Updates the chunk based on its contents
 		void UpdateChunk()
 		{
+			rendered = true;
 			MeshData meshData = new MeshData();
 			for (int x = 0; x < ChunkSize; x++)
 			{

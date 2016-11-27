@@ -9,20 +9,6 @@ namespace GameWorld.Voxel
 		public Dictionary<WorldPos, Chunk> chunks = new Dictionary<WorldPos, Chunk>();
 		public GameObject chunkPrefab;
 
-		void Start()
-		{
-			for (int x = -2; x < 2; x++)
-			{
-				for (int y = -1; y < 1; y++)
-				{
-					for (int z= -1; z < 1; z++)
-					{
-						CreateChunk(x * 16, y * 16, z * 16);
-					}
-				}
-			}
-		}
-
 		/// <summary>
 		/// Creates a chunk with a given world position
 		/// </summary>
@@ -40,25 +26,12 @@ namespace GameWorld.Voxel
 			newChunk.pos = worldPos;
 			newChunk.world = this;
 
+			// Add it to the chunks dictionary with the world position as the key.
 			chunks.Add(worldPos, newChunk);
 
-			for (int xi = 0; xi < 16; xi++)
-			{
-				for (int yi = 0; yi < 16; yi++)
-				{
-					for (int zi = 0; zi < 16; zi++)
-					{
-						if (yi <= 7)
-						{
-							SetBlock(x + xi, y + yi, z + zi, new GrassBlock());
-						}
-						else
-						{
-							SetBlock(x + xi, y + yi, z + zi, new AirBlock());
-						}
-					}
-				}
-			}
+			WorldGenerator worldGen = new WorldGenerator();
+			newChunk = worldGen.ChunkGen(newChunk);
+			// Save stuff goes here later.
 		}
 
 		/// <summary>

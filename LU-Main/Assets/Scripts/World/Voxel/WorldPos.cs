@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace GameWorld.Voxel
 {
@@ -32,6 +33,40 @@ namespace GameWorld.Voxel
 			}
 
 			return true;
+		}
+
+		public static WorldPos operator + (WorldPos a, WorldPos b)
+		{
+			a.X += b.X;
+			a.Y += b.Y;
+			a.Z += b.Z;
+			return a;
+		}
+
+		public static WorldPos operator + (WorldPos a, Vector3 b)
+		{
+			a.X += Mathf.FloorToInt(b.x);
+			a.Y += Mathf.FloorToInt(b.y);
+			a.Z += Mathf.FloorToInt(b.z);
+			return a;
+		}
+
+		public static WorldPos operator + (Vector3 a, WorldPos b)
+		{
+			return b + a;
+		}
+
+		public static WorldPos operator * (WorldPos a, int b)
+		{
+			a.X *= b;
+			a.Y *= b;
+			a.Z *= b;
+			return a;
+		}
+
+		public static WorldPos operator * (int a, WorldPos b)
+		{
+			return b * a;
 		}
 	}
 }
