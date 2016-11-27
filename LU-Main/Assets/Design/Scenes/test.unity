@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd25c230a86962a44902fad995d40b8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _LandSpeed: 25
+  _LandSpeed: 10
   _physics:
     applyGravity: 0
 --- !u!114 &484604980
@@ -320,7 +320,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   world: {fileID: 139456861}
-  genStepsOut: 8
+  genStepsOut: 6
+  deleteTimeout: 10
 --- !u!1 &1203186626
 GameObject:
   m_ObjectHideFlags: 0
